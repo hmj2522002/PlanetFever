@@ -59,7 +59,7 @@ void SceneTitle::Update()
 
 	if (Keyboard::IsDown(KEY_INPUT_SPACE))
 	{
-		SaveData::GetInstance()->SetScore(8000);
+		SaveData::GetInstance()->SetScore(10000);
 	}
 }
 
