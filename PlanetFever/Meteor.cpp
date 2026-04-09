@@ -3,10 +3,12 @@
 #include "CircleHitBox.h"
 #include "Physics2D.h"
 #include "Effect.h"
+#include "PlanetInfo.h"
+#include "SaveData.h"
 
 Meteor::Meteor(PlanetInfo::OreType type ,Vector2 dir) :
 	Actor2D("Resource/meteors.png", Tag::Enemy, Layer::Object, Vector2()),
-	m_hp(10),
+	m_hp(0),
 	m_seBreak(0),
 	m_destroyWaitTimeFrame(DestroyWaitTimeFrame),
 	m_isStartDestroy(false),
@@ -23,6 +25,10 @@ Meteor::Meteor(PlanetInfo::OreType type ,Vector2 dir) :
 
 	m_sprite->SetGlidSize(GlidSize);
 	m_sprite->SetAnimeType(static_cast<int>(m_type));
+
+	float baseHp = PlanetInfo::MeteorHP[static_cast<int>(m_type)];
+
+	m_hp = baseHp;
 
 	m_transform.scale = 2.0f;
 }
@@ -71,7 +77,7 @@ void Meteor::OnCollisionEnter(const Actor2D* other)
 
 	if (other->GetTag() == Tag::Bullet)
 	{
-		m_hp--;
+		m_hp -= 1.0f;
 		if (m_hp <= 0)
 		{
 			GetParent()->AddChild(new Ore(m_transform.position, m_type));

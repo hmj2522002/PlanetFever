@@ -35,19 +35,32 @@ private:
 	class UIvalue
 	{
 	public:
+		static constexpr int SeDurationFrame = 6;
+
 		float m_drawNumber;
+		float m_prevDrawNum;
 		int m_number;
+		int m_seCount;
+		int m_duration;
+		bool m_isPlaySE;
 		DrawNumber* m_UI;
 
-		UIvalue(int num, bool isStatic = false) :
+		UIvalue(int num, bool isStatic = false, bool isPlaySE = false) :
 			m_drawNumber(0),
+			m_prevDrawNum(0),
 			m_number(num),
+			m_seCount(0),
+			m_duration(0),
+			m_isPlaySE(isPlaySE),
 			m_UI(nullptr)
 		{
 			// m_drawNumber‚Ì”’l‚ğ“®‚©‚È‚­‚³‚¹‚é
 			if (isStatic) m_drawNumber = static_cast<float>(m_number);
 
 			m_UI = new DrawNumber();
+
+			m_seCount = LoadSoundMem("Sounds/se_count02.mp3");
+			ChangeVolumeSoundMem(120, m_seCount);
 		}
 
 		void Update();

@@ -14,6 +14,7 @@ public:
 
 private:
 	static constexpr int WaitStartTimeFrame = 120;
+	static constexpr int StartTimeLeftSound = 1000;
 
 	int score;
 	int prevTotalScore;
@@ -22,6 +23,8 @@ private:
 	int waitStart;
 	int seStart;
 	int seFinish;
+	int seCount01;
+	int seCount02;
 	bool inGame;
 
 public:

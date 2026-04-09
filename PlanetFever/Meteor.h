@@ -12,7 +12,7 @@ private:
 	static constexpr int EffectAmount = 8;
 	static constexpr int DestroyWaitTimeFrame = 180;
 
-	int m_hp;
+	float m_hp;
 	int m_seBreak;
 	int m_destroyWaitTimeFrame;
 	bool m_isStartDestroy;
@@ -29,6 +29,6 @@ protected:
 	virtual void OnCollisionEnter(const Actor2D* other) override;
 
 public:
-	Meteor(PlanetInfo::OreType type ,Vector2 dir);
+	Meteor(PlanetInfo::OreType type, Vector2 dir);
 
 };

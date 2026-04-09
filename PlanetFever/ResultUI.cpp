@@ -33,9 +33,9 @@ ResultUI::ResultUI(int listIndex, int drawPosY, bool isFinalResult) :
 
 	// 詳細の数値（下の説明と同じようなつくりをしたかったが複雑になってしまうので断念）
 	m_getNumUI = new UIvalue(m_getValue);
-	m_priceNumUI = new UIvalue(m_priceValue);
+	m_priceNumUI = new UIvalue(m_priceValue, true);
 	m_totalNumUI = new UIvalue(m_totalValue);
-	m_finalResultNumUI = new UIvalue(GameInfo::GetInstance()->GetScore());
+	m_finalResultNumUI = new UIvalue(GameInfo::GetInstance()->GetScore(), false, true);
 
 	// 詳細の説明
 	if (m_listIndex == 0 && !m_isFinalResult)
@@ -113,6 +113,21 @@ void ResultUI::UIvalue::Update()
 {
 	// 描画時にゆっくりと本来の数値に変える
 	m_drawNumber += (m_number - m_drawNumber) * 0.05f;
+
+	if (0 < m_duration)
+	{
+		m_duration--;
+	}
+
+	if (static_cast<int>(m_prevDrawNum) != static_cast<int>(m_drawNumber)
+		&& m_duration <= 0
+		&& m_isPlaySE)
+	{
+		PlaySoundMem(m_seCount, DX_PLAYTYPE_BACK);
+		m_duration = SeDurationFrame;
+	}
+
+	m_prevDrawNum = m_drawNumber;
 }
 
 void ResultUI::Draw()
@@ -127,12 +142,13 @@ void ResultUI::Draw()
 			OreScale
 		);
 
-		//// 取得した鉱石の価値
-		//DrawResult(m_numberHandle,
-		//	Vector2(m_priceNumUI->m_number, 0),
-		//	Vector2(DrawNumPosX[static_cast<int>(DrawNum::Left)], m_drawPosY),
-		//	NumberGlid
-		//);
+		// 取得した鉱石の価値
+		m_priceNumUI->m_UI->Draw(m_priceNumUI->m_drawNumber,
+			Vector2(DrawNumPosX[static_cast<int>(DrawNum::Left)] + MinDist / 2, m_drawPosY),
+			false,
+			1.0f,
+			false
+		);
 
 		// オペレーター（×）
 		DrawResult(m_operatorHandle,
@@ -141,12 +157,13 @@ void ResultUI::Draw()
 			OperatorGlid
 		);
 
-		//// 取得した鉱石の数
-		//DrawResult(m_numberHandle,
-		//	Vector2(m_getNumUI->m_drawNumber, 0),
-		//	Vector2(DrawNumPosX[static_cast<int>(DrawNum::Center)], m_drawPosY),
-		//	NumberGlid
-		//);
+		// 取得した鉱石の数
+		m_getNumUI->m_UI->Draw(m_getNumUI->m_drawNumber,
+			Vector2(DrawNumPosX[static_cast<int>(DrawNum::Center)] + MinDist / 2, m_drawPosY),
+			false,
+			1.0f,
+			false
+		);
 
 		// オペレーター（＝）
 		DrawResult(m_operatorHandle,
@@ -155,27 +172,7 @@ void ResultUI::Draw()
 			OperatorGlid
 		);
 
-		//// 取得した鉱石の数
-		//DrawResult(m_numberHandle,
-		//	Vector2(m_totalNumUI->m_drawNumber, 0),
-		//	Vector2(DrawNumPosX[static_cast<int>(DrawNum::Right)], m_drawPosY),
-		//	NumberGlid
-		//);
-
-		m_priceNumUI->m_UI->Draw(m_priceNumUI->m_drawNumber,
-			Vector2(DrawNumPosX[static_cast<int>(DrawNum::Left)] + MinDist / 2, m_drawPosY),
-			false,
-			1.0f,
-			false
-		);
-
-		m_getNumUI->m_UI->Draw(m_getNumUI->m_drawNumber,
-			Vector2(DrawNumPosX[static_cast<int>(DrawNum::Center)] + MinDist / 2, m_drawPosY),
-			false,
-			1.0f,
-			false
-		);
-
+		// 取得した鉱石の合計スコア
 		m_totalNumUI->m_UI->Draw(m_totalNumUI->m_drawNumber,
 			Vector2(DrawNumPosX[static_cast<int>(DrawNum::Right)] + MinDist / 2, m_drawPosY),
 			false,
@@ -185,20 +182,10 @@ void ResultUI::Draw()
 	}
 	else if (m_isFinalResult)
 	{
-
+		// 総合スコア
 		m_finalResultNumUI->m_UI->Draw(m_finalResultNumUI->m_drawNumber,
 			Vector2(DrawNumPosX[static_cast<int>(DrawNum::Center)], m_drawPosY)
 		);
-
-
-
-		//// 総合スコア
-		//DrawResult(m_numberHandle,
-		//	Vector2(m_finalResultNumUI->m_drawNumber, 0),
-		//	Vector2(DrawNumPosX[static_cast<int>(DrawNum::Center)], m_drawPosY),
-		//	NumberGlid
-		//);
-
 	}
 
 	for (auto& list : m_texts)

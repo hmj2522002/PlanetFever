@@ -87,7 +87,7 @@ void Animation2D::LateDraw(const Transform2D& transform, Layer layer)
 	this->MainDraw(transform, layer);
 }
 
-void Animation2D::MainDraw(const Transform2D& transform, Layer layer)
+void Animation2D::MainDraw(const Transform2D& transform, Layer layer) const
 {
 	if (!m_isDraw) return;
 

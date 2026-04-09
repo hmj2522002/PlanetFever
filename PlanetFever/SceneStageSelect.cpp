@@ -48,7 +48,7 @@ void SceneStageSelect::Initialize()
 
 	Bgm::GetInstance()->ChangeBgm(Bgm::BgmType::Rest);
 
-	m_seSelect = LoadSoundMem("Sounds/se_count.mp3");
+	m_seSelect = LoadSoundMem("Sounds/se_count01.mp3");
 }
 
 void SceneStageSelect::Finalize()

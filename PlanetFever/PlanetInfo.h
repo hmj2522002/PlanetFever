@@ -67,12 +67,23 @@ public:
 	// 鉱石の価値（スコア）
 	static constexpr int OrePrice[static_cast<int>(OreType::Length)]
 	{
-		40,
-		60,
-		75,
-		50,
+		 40,
+		 60,
+		 75,
+		 50,
 		100,
-		90,
+		120,
+	};
+
+	// 隕石ごとの体力
+	static constexpr float MeteorHP[static_cast<int>(OreType::Length)]
+	{
+		10.0f,
+		12.0f,
+		15.0f,
+		 6.0f,
+		12.0f,
+		18.0f,
 	};
 
 	struct SpawnOreType
@@ -87,19 +98,20 @@ public:
 	PlanetInfo() :
 		nowStage(0)
 	{
-		AddSpawnOre(PlanetName::CoalFallingPlanet, OreType::Coal, 100);
+		// それぞれの惑星に降ってくる隕石と、その確率を設定
+		AddSpawnOre(PlanetName::CoalFallingPlanet,		OreType::Coal,	   100);
 
-		AddSpawnOre(PlanetName::MetalAndSilverPlanet, OreType::Silver, 50);
-		AddSpawnOre(PlanetName::MetalAndSilverPlanet, OreType::Iron, 50);
+		AddSpawnOre(PlanetName::MetalAndSilverPlanet,	OreType::Silver,	50);
+		AddSpawnOre(PlanetName::MetalAndSilverPlanet,	OreType::Iron,		50);
 
-		AddSpawnOre(PlanetName::CopperGlowPlanet, OreType::Copper, 80);
-		AddSpawnOre(PlanetName::CopperGlowPlanet, OreType::Coal, 20);
+		AddSpawnOre(PlanetName::CopperGlowPlanet,		OreType::Copper,	80);
+		AddSpawnOre(PlanetName::CopperGlowPlanet,		OreType::Coal,		20);
 
-		AddSpawnOre(PlanetName::GoldFeverPlanet, OreType::Gold, 70);
-		AddSpawnOre(PlanetName::GoldFeverPlanet, OreType::Silver, 15);
-		AddSpawnOre(PlanetName::GoldFeverPlanet, OreType::Coal, 15);
+		AddSpawnOre(PlanetName::GoldFeverPlanet,		OreType::Gold,		70);
+		AddSpawnOre(PlanetName::GoldFeverPlanet,		OreType::Silver,	15);
+		AddSpawnOre(PlanetName::GoldFeverPlanet,		OreType::Coal,		15);
 
-		AddSpawnOre(PlanetName::BluelyShinyPlanet, OreType::Sapphire, 100);
+		AddSpawnOre(PlanetName::BluelyShinyPlanet,		OreType::Sapphire, 100);
 	}
 
 	// シングルトン取得

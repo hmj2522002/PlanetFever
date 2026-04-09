@@ -52,16 +52,18 @@ void MeteorGenerator::Update()
 				int totalWeight = 0;
 				int cumulative = 0;
 
+				// 重さの合計を算出
 				for (int weight : thisPlanetInfo.oreWeight)
 				{
 					totalWeight += weight;
 				}
 
-				int random = rand() % totalWeight;
-				int ore = 0;
+				int random = rand() % totalWeight;	// 重さの合計値からランダムな数を取得
+				int ore = 0;						// 試行回数
 
 				for (int weight : thisPlanetInfo.oreWeight)
 				{
+					// 順番に重さを足していき、ランダム値を超えたらその鉱石に決まる
 					cumulative += weight;
 
 					if (random < cumulative)

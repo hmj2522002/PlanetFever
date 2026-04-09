@@ -27,7 +27,7 @@ private:
 	bool m_isLooped;	// ƒ‹[ƒv‚µ‚½‚©
 	bool m_isDraw;		// •`‰æ‚·‚é‚©
 
-	void MainDraw(const Transform2D& transform, Layer layer);
+	void MainDraw(const Transform2D& transform, Layer layer) const;
 
 protected:
 
