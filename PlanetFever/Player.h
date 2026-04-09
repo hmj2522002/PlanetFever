@@ -8,9 +8,10 @@ private:
 	static constexpr float MaxJetPackSpeed = 6;
 	static constexpr float JetPackBoost = 0.2f;
 	static constexpr float StartWalkSpeed = 0.1f;	// 歩きアニメーションに切り替えるのに必要な速度
-	static constexpr float DamageKnockBackPower = 15;
-	static constexpr float MinEffectPower = 1.2f;
-	static constexpr float MaxEffectPower = 2.8f;
+	static constexpr float DamageKnockBackPower = 4;
+	static constexpr float MinEffectPower = 2.8f;
+	static constexpr float MaxEffectPower = 4.2f;
+	static constexpr int StunTimeFrame = 60;
 
 	struct HitBox
 	{
@@ -58,6 +59,7 @@ private:
 	int m_seFire;
 	int m_seDamage;
 	int m_seJet;
+	int m_stunTimeFrame;
 	bool m_isGrounded;
 	bool m_prevGrounded;
 	bool m_isJet;

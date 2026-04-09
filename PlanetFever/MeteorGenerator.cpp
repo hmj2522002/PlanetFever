@@ -86,6 +86,8 @@ void MeteorGenerator::Update()
 		int frameLeft = GameInfo::GetInstance()->GetTimeLeft();
 		int defaultFrameLeft = GameInfo::TimeFrameLeft;
 
+		// ˜f¯‚²‚Æ‚Ìè¦ÎoŒ»ŠÔŠu“™‚Í"PlanetInfo.h"‚É‚ ‚è‚Ü‚·
+
 		if (defaultFrameLeft * 0.75f < frameLeft)
 		{
 			m_spanFrame = DefaultSpanFrame * 1.2f;

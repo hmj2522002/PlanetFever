@@ -20,7 +20,7 @@ public:
 
 private:
 	static constexpr float BlinkingSpeed = 1.0f;
-	static constexpr Vector2 GlidSize = Vector2(866, 60);
+	static constexpr Vector2 GlidSize = Vector2(886, 60);
 
 	Text m_text;		// 描画テキスト
 	Vector2 m_position;	// 描画位置

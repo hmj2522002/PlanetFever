@@ -20,6 +20,7 @@ Meteor::Meteor(PlanetInfo::OreType type ,Vector2 dir) :
 	m_collider = new CircleHitBox(Radius,Vector2(), PhysicsBehavior::Collision);
 	m_collider->SetPhysicsBehavior(Tag::Player, PhysicsBehavior::Trigger);
 	m_collider->SetPhysicsBehavior(Tag::Ground, PhysicsBehavior::Collision);
+	m_collider->SetPhysicsBehavior(Tag::Ore, PhysicsBehavior::Ignore);
 	m_circleRigid2d = CircleRigid2D();
 	m_circleRigid2d.limitSpeedFall = 1.0f;
 

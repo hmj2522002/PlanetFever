@@ -15,6 +15,7 @@ Player::Player(Vector2 pos) :
 	m_seFire(0),
 	m_seDamage(0),
 	m_seJet(0),
+	m_stunTimeFrame(0),
 	m_isGrounded(false),
 	m_prevGrounded(false),
 	m_isJet(false),
@@ -83,24 +84,17 @@ void Player::Update()
 	}
 	else
 	{
-		if (gameInfo->InGame())
+		if (gameInfo->InGame() && m_stunTimeFrame <= 0)
 		{
 			dir = (m_mouseWorldPoint - m_transform.position);
-		}
-		else
-		{
-			dir = (m_transform.position - gravityPoint);
-		}
-		m_circleRigid2d.horizontalFriction = 0.01f;
-
-		if (GameInfo::GetInstance()->InGame())
-		{
 			anime = Anime::Fly;
 		}
 		else
 		{
+			dir = (m_transform.position - gravityPoint);
 			anime = Anime::Fall;
 		}
+		m_circleRigid2d.horizontalFriction = 0.01f;
 	}
 	m_transform.angle = dir.Normalized().ToRad() + 
 		static_cast<float>(Math::Pi) / 2.0f;
@@ -120,7 +114,7 @@ void Player::Update()
 	
 	m_isJet = false;
 
-	if (Mouse::IsPress(MOUSE_INPUT_LEFT) && GameInfo::GetInstance()->InGame())
+	if (Mouse::IsPress(MOUSE_INPUT_LEFT) && gameInfo->InGame() && m_stunTimeFrame <= 0)
 	{
 		Vector2 nowVelocity;
 		nowVelocity = m_circleRigid2d.velocity;
@@ -147,12 +141,14 @@ void Player::Update()
 		{
 			m_isJet = true;
 
+			float spread = MaxEffectPower - MinEffectPower;
+
 			Vector2 random = Vector2(
-				fmod(rand(), MaxEffectPower - MinEffectPower),
-				fmod(rand(), MaxEffectPower - MinEffectPower)
+				fmod(rand(), spread) - spread / 2.0f,
+				fmod(rand(), spread) - spread / 2.0f
 			);
 
-			float power = random.x + MinEffectPower;
+			float power = random.x * 2.0f;
 			Vector2 rotation = random + Vector2(
 				MaxEffectPower - MinEffectPower,
 				MaxEffectPower - MinEffectPower) / 2.0f;
@@ -180,7 +176,7 @@ void Player::Update()
 		StopSoundMem(m_seJet);
 	}
 
-	if (GameInfo::GetInstance()->InGame())
+	if (GameInfo::GetInstance()->InGame() && m_stunTimeFrame <= 0)
 	{
 		if (Keyboard::IsDown(KEY_INPUT_SPACE) ||
 			Keyboard::IsUp(KEY_INPUT_SPACE))
@@ -194,6 +190,11 @@ void Player::Update()
 	if (m_prevAnimType != static_cast<int>(anime))
 	{
 		SetAnimeType(anime);
+	}
+
+	if (0 < m_stunTimeFrame)
+	{
+		m_stunTimeFrame--;
 	}
 
 	m_prevAnimType = m_sprite->GetAnimeType();
@@ -220,15 +221,17 @@ void Player::OnCollisionEnter(const Actor2D* other)
 	{
 		m_isGrounded = true;
 	}
-}
 
-void Player::OnCollision(const Actor2D* other)
-{
 	if (other->GetTag() == Tag::Enemy)
 	{
 		PlaySoundMem(m_seDamage, DX_PLAYTYPE_BACK);
 		m_circleRigid2d.velocity = (m_transform.position - other->GetPosition()).Normalized() * DamageKnockBackPower;
+		m_stunTimeFrame = StunTimeFrame;
 	}
+}
+
+void Player::OnCollision(const Actor2D* other)
+{
 }
 
 void Player::OnCollisionExit(const Actor2D* other)

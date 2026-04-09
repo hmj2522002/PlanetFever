@@ -1,5 +1,6 @@
 #include "Bullet.h"
 #include "CircleHitBox.h"
+#include "Effect.h"
 
 Bullet::Bullet(Transform2D& transform, BulletType bulletType) :
 	Actor2D("Resource/bullet.png", Tag::Bullet, Layer::Object, transform, 2, 30),
@@ -46,6 +47,7 @@ void Bullet::OnCollisionEnter(const Actor2D* other)
 	if (other->GetTag() == Tag::Enemy ||
 		other->GetTag() == Tag::Ground)
 	{
+		GetParent()->AddChild(new Effect(m_transform.position, Effect::Anime::Air));
 		Release();
 	}
 }

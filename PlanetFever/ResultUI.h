@@ -60,7 +60,7 @@ private:
 			m_UI = new DrawNumber();
 
 			m_seCount = LoadSoundMem("Sounds/se_count02.mp3");
-			ChangeVolumeSoundMem(120, m_seCount);
+			ChangeVolumeSoundMem(160, m_seCount);
 		}
 
 		void Update();

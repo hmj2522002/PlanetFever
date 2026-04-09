@@ -34,6 +34,21 @@
     <Filter Include="ヘッダー ファイル\UIs">
       <UniqueIdentifier>{fdbe20d3-3f98-4ae0-af37-846b5aabfefe}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\Objects">
+      <UniqueIdentifier>{55fe293b-d8b3-4387-9757-b97b29933a27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Sounds">
+      <UniqueIdentifier>{b4128bfa-a7f8-479b-bd11-7b010530ec31}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Sounds">
+      <UniqueIdentifier>{4096d667-2033-4c3c-9e84-5cc1920dcb25}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Inputs">
+      <UniqueIdentifier>{88378da4-6820-4d2a-a0d2-c56540c33b8d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Inputs">
+      <UniqueIdentifier>{03ad2263-2eea-4184-a064-d36b723c435b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -55,12 +70,6 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Fade.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="KeyBoard.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Mouse.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="MeteorGenerator.cpp">
@@ -108,9 +117,6 @@
     <ClCompile Include="PlanetInfo.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Button.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="TimeLeftUI.cpp">
       <Filter>ソース ファイル\UIs</Filter>
     </ClCompile>
@@ -132,9 +138,6 @@
     <ClCompile Include="SmallText.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Bgm.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="DrawNumber.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -143,6 +146,18 @@
     </ClCompile>
     <ClCompile Include="Bullet.cpp">
       <Filter>ソース ファイル\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Bgm.cpp">
+      <Filter>ソース ファイル\Sounds</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>ソース ファイル\Inputs</Filter>
+    </ClCompile>
+    <ClCompile Include="Mouse.cpp">
+      <Filter>ソース ファイル\Inputs</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyBoard.cpp">
+      <Filter>ソース ファイル\Inputs</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -194,21 +209,6 @@
     <ClInclude Include="Easing.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="StageSelectPlanet.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="KeyBoard.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Mouse.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Input.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Planet.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="Layer.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -218,31 +218,13 @@
     <ClInclude Include="Collision2D.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="SaveData.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Meteor.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="MeteorGenerator.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Ore.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Bullet.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Rocket.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="LargeText.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Button.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="GameInfo.h">
@@ -275,12 +257,6 @@
     <ClInclude Include="SmallText.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Effect.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Bgm.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="ResultUI.h">
       <Filter>ヘッダー ファイル\UIs</Filter>
     </ClInclude>
@@ -292,6 +268,45 @@
     </ClInclude>
     <ClInclude Include="DrawNumber.h">
       <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet.h">
+      <Filter>ヘッダー ファイル\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Meteor.h">
+      <Filter>ヘッダー ファイル\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Ore.h">
+      <Filter>ヘッダー ファイル\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>ヘッダー ファイル\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Planet.h">
+      <Filter>ヘッダー ファイル\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Rocket.h">
+      <Filter>ヘッダー ファイル\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Effect.h">
+      <Filter>ヘッダー ファイル\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="StageSelectPlanet.h">
+      <Filter>ヘッダー ファイル\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Bgm.h">
+      <Filter>ヘッダー ファイル\Sounds</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>ヘッダー ファイル\Inputs</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyBoard.h">
+      <Filter>ヘッダー ファイル\Inputs</Filter>
+    </ClInclude>
+    <ClInclude Include="Input.h">
+      <Filter>ヘッダー ファイル\Inputs</Filter>
+    </ClInclude>
+    <ClInclude Include="Mouse.h">
+      <Filter>ヘッダー ファイル\Inputs</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -46,7 +46,7 @@ public:
 	{
 		0.8f,
 		1.0f,
-		1.8f,
+		1.5f,
 		1.2f,
 		0.8f
 	};
@@ -67,10 +67,10 @@ public:
 	// 鉱石の価値（スコア）
 	static constexpr int OrePrice[static_cast<int>(OreType::Length)]
 	{
-		 40,
 		 60,
-		 75,
-		 50,
+		 70,
+		 85,
+		 45,
 		100,
 		120,
 	};
