@@ -12,7 +12,7 @@ private:
 	static constexpr float CameraScaleChangeSpeed = 1;
 	static constexpr float MaxScale = 1.0f;
 	static constexpr float MinScale = 0.6f;
-	static constexpr float MaxCameraDist = 1200.0f;
+	static constexpr float MaxCameraDist = 800.0f;
 	static constexpr bool IsHorizontalScreen = Screen::Height < Screen::Width;
 	static constexpr int ShakeSpanFrame = 4;
 
@@ -118,7 +118,7 @@ public:
 	}
 
 	// ‰æ–Ê‚ð—h‚ç‚·ŽžŠÔ‚ðŽw’è
-	void ScreenShake(int timeFrame = 15, float range = 5)
+	void ScreenShake(int timeFrame = 15, float range = 15)
 	{
 		shakeTime = timeFrame;
 		shakeRange = range;

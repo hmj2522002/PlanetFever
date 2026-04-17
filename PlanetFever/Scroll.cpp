@@ -18,7 +18,7 @@ void Scroll::Update()
 		{
 			top = Math::Clamp(
 				actor->GetPosition().y,
-				DefaultScrollPosition.y - MaxCameraDist,
+				DefaultScrollPosition.y - MaxCameraDist * cameraScale,
 				DefaultScrollPosition.y
 			);
 		}
@@ -28,7 +28,7 @@ void Scroll::Update()
 			bottom = Math::Clamp(
 				actor->GetPosition().y,
 				DefaultScrollPosition.y,
-				DefaultScrollPosition.y + MaxCameraDist
+				DefaultScrollPosition.y + MaxCameraDist * cameraScale
 			);
 		}
 
@@ -36,7 +36,7 @@ void Scroll::Update()
 		{
 			left = Math::Clamp(
 				actor->GetPosition().x,
-				DefaultScrollPosition.x - MaxCameraDist,
+				DefaultScrollPosition.x - MaxCameraDist * cameraScale,
 				DefaultScrollPosition.x
 			);
 		}
@@ -46,7 +46,7 @@ void Scroll::Update()
 			right = Math::Clamp(
 				actor->GetPosition().x,
 				DefaultScrollPosition.x,
-				DefaultScrollPosition.x + MaxCameraDist
+				DefaultScrollPosition.x + MaxCameraDist * cameraScale
 			);
 		}
 	}
@@ -84,13 +84,14 @@ void Scroll::Update()
 
 	if (0 < shakeTime)
 	{
+		prevShakeTime = shakeTime;
 		shakeTime--;
 
 		if (prevShakeTime < shakeTime ||
 			shakeTime % ShakeSpanFrame == 0)
 		{
-			float x = (rand() % ShakeSpanFrame * 2) - ShakeSpanFrame;
-			float y = (rand() % ShakeSpanFrame * 2) - ShakeSpanFrame;
+			float x = static_cast<float>((rand() % static_cast<int>(shakeRange) * 2) - static_cast<int>(shakeRange));
+			float y = static_cast<float>((rand() % static_cast<int>(shakeRange) * 2) - static_cast<int>(shakeRange));
 		
 			shakeOffset = Vector2(x, y);
 		}
@@ -101,8 +102,8 @@ void Scroll::Update()
 		{
 			shakeOffset = Vector2(0, 0);
 		}
+		prevShakeTime = shakeTime;
 	}
-	prevShakeTime = shakeTime;
 
 	drawShakeOffset = (shakeOffset + drawShakeOffset) / 2.0f;
 
