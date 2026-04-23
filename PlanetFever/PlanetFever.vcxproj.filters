@@ -159,6 +159,9 @@
     <ClCompile Include="KeyBoard.cpp">
       <Filter>ソース ファイル\Inputs</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerStatus.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameMain.h">
@@ -307,6 +310,9 @@
     </ClInclude>
     <ClInclude Include="Mouse.h">
       <Filter>ヘッダー ファイル\Inputs</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerStatus.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

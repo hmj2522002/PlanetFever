@@ -15,13 +15,13 @@ void DrawNumber::Release()
 
 void DrawNumber::Draw(float drawNum, Vector2 position, bool center, float scale, bool contain0) const
 {
-	int value = std::round(drawNum);
+	int value = static_cast<int>(std::round(drawNum));
 	int drawCount = 0;
 	float drawX = 0;
 
 	if (center)
 	{
-		int drawLength = std::to_string(static_cast<int>(drawNum)).length();
+		int drawLength = static_cast<int>(std::to_string(static_cast<int>(drawNum)).length());
 
 		if (drawLength < MinDrawLength)
 		{

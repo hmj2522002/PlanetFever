@@ -128,7 +128,7 @@ void StageSelectPlanet::Draw()
 	{
 		m_smallText->ChangeText(SmallText::Text::NeedScore);
 		m_smallText->Draw(m_transform.position + TextOffset, UIsize);
-		m_drawNumber->Draw(PlanetInfo::PlanetCosts[m_imageNum], m_transform.position + NumberOffset, UIsize);
+		m_drawNumber->Draw(static_cast<float>(PlanetInfo::PlanetCosts[m_imageNum]), m_transform.position + NumberOffset, UIsize);
 	}
 }
 

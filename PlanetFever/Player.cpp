@@ -176,7 +176,7 @@ void Player::Update()
 		StopSoundMem(m_seJet);
 	}
 
-	if (GameInfo::GetInstance()->InGame() && m_stunTimeFrame <= 0)
+	if (GameInfo::GetInstance()->InGame() && m_stunTimeFrame <= 0 && !m_isGrounded)
 	{
 		if (Keyboard::IsDown(KEY_INPUT_SPACE) ||
 			Keyboard::IsUp(KEY_INPUT_SPACE))

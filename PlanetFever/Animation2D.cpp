@@ -111,8 +111,8 @@ void Animation2D::MainDraw(const Transform2D& transform, Layer layer) const
 	SetDrawBright(m_brightness, m_brightness, m_brightness);
 
 	DrawRectRotaGraph(
-		static_cast<int>(drawPos.x) + drawShake.x,
-		static_cast<int>(drawPos.y) + drawShake.y,
+		static_cast<int>(drawPos.x + static_cast<float>(drawShake.x * cameraScale)),
+		static_cast<int>(drawPos.y + static_cast<float>(drawShake.y * cameraScale)),
 		static_cast<int>(m_glidSize.x) * m_animeNum,
 		static_cast<int>(m_glidSize.y) * m_animeType,
 		static_cast<int>(m_glidSize.x),

@@ -57,10 +57,12 @@ void SceneTitle::Update()
 	}
 	m_rootNode->TreeUpdate();
 
+#ifdef _DEBUG
 	if (Keyboard::IsDown(KEY_INPUT_SPACE))
 	{
-		SaveData::GetInstance()->SetScore(10000);
+		SaveData::GetInstance()->SetScore(4000);
 	}
+#endif
 }
 
 void SceneTitle::Draw()

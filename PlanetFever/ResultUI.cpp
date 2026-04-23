@@ -198,7 +198,7 @@ void ResultUI::Draw()
 void ResultUI::DrawResult(int handle, Vector2 numOrType, Vector2 position, Vector2 glidSize, float scale)
 {
 	int value = static_cast<int>(std::round(numOrType.x));
-	int type = numOrType.y;
+	int type = static_cast<int>(numOrType.y);
 	float drawX = 0;
 
 	do

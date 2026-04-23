@@ -10,7 +10,7 @@ ScoreUI::ScoreUI() :
 {
 	m_numberFont = LoadGraph("Resource/number.png");
 
-	m_drawScore = GameInfo::GetInstance()->GetPrevTotalScore();
+	m_drawScore = static_cast<float>(GameInfo::GetInstance()->GetPrevTotalScore());
 	m_score = SaveData::GetInstance()->GetScore();
 
 	m_smallText = new SmallText(SmallText::Text::Score);

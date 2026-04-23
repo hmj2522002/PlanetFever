@@ -162,6 +162,7 @@
     <ClCompile Include="Planet.cpp" />
     <ClCompile Include="PlanetInfo.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerStatus.cpp" />
     <ClCompile Include="ResultUI.cpp" />
     <ClCompile Include="Rocket.cpp" />
     <ClCompile Include="SceneGame.cpp" />
@@ -192,6 +193,7 @@
     <ClInclude Include="GameConfig.h" />
     <ClInclude Include="GameInfo.h" />
     <ClInclude Include="GameMain.h" />
+    <ClInclude Include="PlayerStatus.h" />
     <ClInclude Include="ResultUI.h" />
     <ClInclude Include="SaveData.h" />
     <ClInclude Include="Input.h" />

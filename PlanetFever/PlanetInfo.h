@@ -69,21 +69,21 @@ public:
 	{
 		 60,
 		 70,
-		 85,
+		 75,
 		 45,
 		100,
 		120,
 	};
 
 	// è¦Î‚²‚Æ‚Ì‘Ì—Í
-	static constexpr float MeteorHP[static_cast<int>(OreType::Length)]
+	static constexpr int MeteorHP[static_cast<int>(OreType::Length)]
 	{
-		10.0f,
-		12.0f,
-		15.0f,
-		 6.0f,
-		12.0f,
-		18.0f,
+		100,
+		120,
+		150,
+		 60,
+		120,
+		220,
 	};
 
 	struct SpawnOreType

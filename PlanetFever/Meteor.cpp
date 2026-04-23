@@ -6,7 +6,7 @@
 #include "PlanetInfo.h"
 #include "SaveData.h"
 
-Meteor::Meteor(PlanetInfo::OreType type ,Vector2 dir) :
+Meteor::Meteor(PlanetInfo::OreType type ,Vector2 dir, float dist) :
 	Actor2D("Resource/meteors.png", Tag::Enemy, Layer::Object, Vector2()),
 	m_hp(0),
 	m_seBreak(0),
@@ -14,20 +14,23 @@ Meteor::Meteor(PlanetInfo::OreType type ,Vector2 dir) :
 	m_isStartDestroy(false),
 	m_type(type)
 {
+	// 位置や物理を設定
 	m_transform.position = 
-		dir.Normalized() * 1000
+		dir.Normalized() * dist
 		+ Physics2D::GetInstance()->GetGravityPoint();
 	m_collider = new CircleHitBox(Radius,Vector2(), PhysicsBehavior::Collision);
 	m_collider->SetPhysicsBehavior(Tag::Player, PhysicsBehavior::Trigger);
 	m_collider->SetPhysicsBehavior(Tag::Ground, PhysicsBehavior::Collision);
 	m_collider->SetPhysicsBehavior(Tag::Ore, PhysicsBehavior::Ignore);
 	m_circleRigid2d = CircleRigid2D();
-	m_circleRigid2d.limitSpeedFall = 1.0f;
+	m_circleRigid2d.limitSpeedFall = 1.25f;
 
+	// アニメーション関連の設定
 	m_sprite->SetGlidSize(GlidSize);
 	m_sprite->SetAnimeType(static_cast<int>(m_type));
 
-	float baseHp = PlanetInfo::MeteorHP[static_cast<int>(m_type)];
+	// 隕石の種類や惑星の種類に応じて耐久力を設定
+	int baseHp = static_cast<int>(PlanetInfo::MeteorHP[static_cast<int>(m_type)]);
 
 	m_hp = baseHp;
 
@@ -78,7 +81,7 @@ void Meteor::OnCollisionEnter(const Actor2D* other)
 
 	if (other->GetTag() == Tag::Bullet)
 	{
-		m_hp -= 1.0f;
+		m_hp -= 10;
 		if (m_hp <= 0)
 		{
 			GetParent()->AddChild(new Ore(m_transform.position, m_type));
@@ -90,17 +93,21 @@ void Meteor::OnCollisionEnter(const Actor2D* other)
 
 void Meteor::StartDestroy()
 {
+	// 隕石の破片生成
 	for (int i = 0; i < EffectAmount; i++)
 	{
-		Vector2 dir = Vector2::AngleToDirect(rand() % 360);
+		float deg = static_cast<float>(rand() % 360);
+		float rad = Math::Deg2Rad(deg);
 
-		float power = fmod(rand(), MaxEffectPower - MinEffectPower) + MinEffectPower;
+		Vector2 dir = Vector2::AngleToDirect(deg);
+
+		float power = static_cast<float>(fmod(rand(), MaxEffectPower - MinEffectPower) + MinEffectPower);
 
 		GetParent()->AddChild(
 			new Effect(
 				Transform2D(
 					m_transform.position,
-					Math::Deg2Rad(dir).ToRad(),
+					rad,
 					m_transform.scale
 				),
 				Effect::Anime::Meteor,

@@ -71,7 +71,7 @@ void SceneStageSelect::Update()
 
 	int planetInterval = StageSelectPlanet::PlanetInterval;
 
-	int nearestPlanetNum = std::round(m_scrollX / static_cast<float>(planetInterval));
+	int nearestPlanetNum = static_cast<int>(std::round(m_scrollX / static_cast<float>(planetInterval)));
 	nearestPlanetNum = Math::Clamp(nearestPlanetNum, 0, PlanetInfo::MaxStage - 1);
 
 	if (m_prevNearestPlanetNum != nearestPlanetNum)
@@ -90,7 +90,7 @@ void SceneStageSelect::Update()
 	{
 		m_scrollSpeedX = static_cast<int>(Mouse::GetPointDelta().x) * -1;
 		
-		m_scrollSpeedX *= scrollSpeed;
+		m_scrollSpeedX = static_cast<int>(m_scrollSpeedX * scrollSpeed);
 
 		if (0 < Math::Abs(m_scrollSpeedX))
 		{	

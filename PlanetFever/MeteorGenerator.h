@@ -7,6 +7,7 @@ class MeteorGenerator : public Node
 private:
 	static constexpr int DefaultSpanFrame = 180;
 	static constexpr int FinishSpawnFrame = 1000;
+	static constexpr float SpawnDist = 1200;
 
 	Vector2 m_spawnDir;
 	int m_spanFrame;

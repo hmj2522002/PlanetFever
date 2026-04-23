@@ -4,9 +4,9 @@
 #include "GameInfo.h"
 
 MeteorGenerator::MeteorGenerator() :
-	m_spanFrame(DefaultSpanFrame
+	m_spanFrame(static_cast<int>(static_cast<float>(DefaultSpanFrame)
 		/ PlanetInfo::SpawnMeteorMagnifications[static_cast<int>(
-			SaveData::GetInstance()->GetStage())]),
+			SaveData::GetInstance()->GetStage())])),
 	m_deltaFrame(0)
 {
 	dummy = static_cast<int>(SaveData::GetInstance()->GetStage());
@@ -79,7 +79,7 @@ void MeteorGenerator::Update()
 
 			if (GetParent())
 			{
-				GetParent()->AddChild(new Meteor(spawnOre, m_spawnDir));
+				GetParent()->AddChild(new Meteor(spawnOre, m_spawnDir, SpawnDist));
 			}
 		}
 
@@ -90,19 +90,19 @@ void MeteorGenerator::Update()
 
 		if (defaultFrameLeft * 0.75f < frameLeft)
 		{
-			m_spanFrame = DefaultSpanFrame * 1.2f;
+			m_spanFrame = static_cast<int>(DefaultSpanFrame * 1.2f);
 		}
 		else if (defaultFrameLeft * 0.50f < frameLeft)
 		{
-			m_spanFrame = DefaultSpanFrame * 0.9f;
+			m_spanFrame = static_cast<int>(DefaultSpanFrame * 0.9f);
 		}
 		else if (defaultFrameLeft * 0.30f < frameLeft)
 		{
-			m_spanFrame = DefaultSpanFrame * 0.7f;
+			m_spanFrame = static_cast<int>(DefaultSpanFrame * 0.7f);
 		}
 		else
 		{
-			m_spanFrame = DefaultSpanFrame * 0.5f;
+			m_spanFrame = static_cast<int>(DefaultSpanFrame * 0.5f);
 
 			if (frameLeft < FinishSpawnFrame)
 			{
@@ -111,8 +111,8 @@ void MeteorGenerator::Update()
 			}
 		}
 		// ˜f¯‚²‚Æ‚ÌoŒ»ŠÔŠu”{—¦‚ÉˆË‘¶‚³‚¹‚é
-		m_spanFrame /= PlanetInfo::SpawnMeteorMagnifications[static_cast<int>(
-			SaveData::GetInstance()->GetStage())];
+		m_spanFrame = static_cast<int>(m_spanFrame / PlanetInfo::SpawnMeteorMagnifications[static_cast<int>(
+			SaveData::GetInstance()->GetStage())]);
 			
 	}
 
